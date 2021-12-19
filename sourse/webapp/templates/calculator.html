@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static "style.css" %}">
+    <title>Document</title>
+</head>
+<body>
+<div class="calculator">
+    <h1>Calculator</h1>
+    <form action="/" method="post">
+
+        <div class="numbers">
+            {% csrf_token %}
+            <label for="first_num" >First Num</label>
+            <input type="number" id="first_num" name="first" required><br>
+            <br>
+            <label for="second_num">Second Num</label>
+            <input type="number" id="second_num" name="second" required><br>
+        </div>
+        <br>
+        <div class="actions">
+            <input type="radio" id="choice1" name="sign" value="+" checked>
+            <label for="choice1">add</label>
+            <br>
+            <input type="radio" id="choice2" name="sign" value="-">
+            <label for="choice2">subtract</label>
+            <br>
+            <input type="radio" id="choice3" name="sign" value="*">
+            <label for="choice3">multiply</label>
+            <br>
+            <input type="radio" id="choice4" name="sign" value="/">
+            <label for="choice4">divide</label>
+            <br>
+            <br>
+            <input type="submit" value="Calculate">
+        </div>
+
+    </form>
+</div>
+<div>
+    {% if  first and second and sign %}
+        <h2>Result: {{ first }} {{ sign }} {{ second }} = {{ result }}</h2>
+    {% endif %}
+
+</div>
+</body>
+</html>
